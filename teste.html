@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>ROLETA</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+        outline: none;
+      }
+      body {
+        font-family: Open Sans;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        background: url("https://i.ibb.co/4f7s7S5/6b32ec44-6f07-457d-b6b6-0eea538f510e.jpg");
+        backdrop-filter: blur(5px);
+        background-size: cover;
+      }
+      
+      .mainbox {
+        position: relative;
+        width: 500px;
+        height: 500px;
+      }
+      .mainbox:after {
+        position: absolute;
+        content: '';
+        width: 81px;
+        height: 81px;
+        background:url("https://cdn-icons-png.flaticon.com/512/5093/5093111.png") no-repeat;
+        background-size: 80px;
+        right: -50px;
+        top: 285px;
+        transform: translateY(-50%);
+      }
+      .box {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        border-radius: 50%;
+        border: 10px solid #fff;
+        overflow: hidden;
+        transition: all ease 5s ;
+      }
+      span {
+        width: 50%;
+        height: 50%;
+        display: inline-block;
+        position: absolute;
+      }
+      .span1 {
+  clip-path: polygon(0 92%, 100% 50%, 0 8%);
+  background-image: linear-gradient(#07044b, #1907dc);
+  top: 120px;
+  left: 0;
+  color:#ffffff
+    }
+
+    .span2 {
+  clip-path: polygon(100% 92%, 0 50%, 100% 8%);
+  background-image: url("https://i.ibb.co/4f7s7S5/6b32ec44-6f07-457d-b6b6-0eea538f510e.jpg"); /* Substitua pelo caminho da sua imagem */
+  background-size: cover;
+  background-image: linear-gradient(#001f2f, #1202c2);
+  top: 120px;
+  right: 0;
+  color: #ffffff;
+  font-size: 10%; /* Altere para o tamanho de fonte desejado */
+  white-space: nowrap;
+   /* Oculta o texto do elemento */
+}
+
+    .span3 {
+    clip-path: polygon(50% 0%, 8% 100%, 92% 100%);
+    background-image: linear-gradient(#63c7fd, #007890);
+    bottom: 0;
+    left: 120px;
+    color:#ffffff
+    }
+
+    .span4 {
+    clip-path: polygon(50% 100%, 92% 0, 8% 0);
+    background-image: linear-gradient(#63c7fd, #40056e);
+    top: 0;
+    left: 120px;
+    color:#000000
+    }
+   
+      .box2 {
+          width: 100%;
+          height: 100%;
+          transform: rotate(-135deg);
+      }
+      span b {
+          width: 65px;
+          height: 65px;
+          line-height: 65px;
+          border-radius: 50%;
+          font-size: 26px;
+          text-align: center;
+          background-color: rgba(255, 255, 255, 0);
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          
+      }
+      .spin {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 75px;
+        height: 75px;
+        border-radius: 50%;
+        border: 4px solid #fff;
+        background-color: #166799;
+        color: #fff;
+        box-shadow: 0 5px 20px #000;
+        font-weight: bold;
+        font-size: 22px;
+        cursor: pointer;
+      }
+      .spin:active {
+        width: 70px;
+        height: 70px;
+        font-size: 20px;
+      }
+      .mainbox.animate:after {
+          animation: animateArrow 0.7s ease infinite;
+      }
+      #result-screen {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 300px;
+        height: 150px;
+        background-color: rgba(255, 255, 255, 0);
+        border-radius: 10px;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        
+        animation: zoomIn 0.5s ease;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      #result-screen a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+      }
+      #result-screen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-80%, -180%);
+  
+
+}
+    #message-container {
+        position: absolute;
+        bottom: -20px;
+        width: 100%;
+        text-align: center;
+        color: #000;
+        font-size: 18px;
+        background-color: #fff;
+        padding: 20px;
+        padding-bottom: 30px;
+        box-sizing: border-box;
+        }
+    @keyframes pulseAnimation {
+            0% {
+            transform: scale(1);
+            }
+            50% {
+            transform: scale(1.1);
+            }
+            100% {
+            transform: scale(1);
+            }
+        }
+    @keyframes zoomIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+    </style>
+  </head>
+  <body>
+    
+    <div id="mainbox" class="mainbox">
+      <div id="box" class="box">
+        <div class="box1">
+          <span class="span1" style="clip-path: polygon(0 92%, 100% 50%, 0 8%); background-color: black;"><img src="https://static.casino.guru/pict/181051/Penalty-Shoot-out.png?timestamp=1659080855000&imageDataId=351924&width=320&height=247" alt="Imagem" style="width: 90px; height: 90px; position: relative; right: -10px; top: 80px; transform: scaleX(-1) scaleY(-1); transform: rotate(275deg);border-radius: 50%;"></span>
+          <span class="span2" style="clip-path: polygon(100% 92%, 0 50%, 100% 8%); background-color: black; background-image: url('https://static.vecteezy.com/system/resources/previews/018/885/243/original/golden-star-badge-you-win-game-award-icon-for-2d-png.png'); background-size: 80%; background-position: right center; background-repeat: no-repeat;"></span>
+
+
+          <span class="span3"><img src="https://www.comparecasino.com/wp-content/uploads/2021/01/thedoghouse.png" alt="Imagem" style="width: 120px; height: 80px; position: relative; right: -65px; top: 145px; transform: scaleX(-1) scaleY(-1);"></span>
+          <span class="span4"><img src="https://minespro.oficialvenda.com.br/wp-content/uploads/2023/02/Mines-Pro-Logo.png" alt="Imagem" style="width: 90px; height: 80px; position: relative; right: -75px;top: 20px"></span>
+        </div>
+        <div class="box2">
+          <span class="span1"><b>REPETIR</b></span>
+          <span class="span2"><img src="https://lvbet-static.com/images/game-screenshots/pragmatic-live/blackjack-dragontiger-logo.webp" alt="Imagem" style="width: 100px; height: 100px; position: relative; right: -125px; top: 70px; transform: scaleX(-1) scaleY(-1); transform: rotate(85deg);"></span>
+          <span class="span3"><img src="https://lvbet-static.com/images/game-screenshots/pgsoft/fortune-tiger-logo.webp" alt="Imagem" style="width: 90px; height: 90px; position: relative; right: -80px; top: 135px; transform: scaleX(-1) scaleY(-1);"></span>
+          <span class="span4"><img src="https://lvbet-static.com/images/game-screenshots/pgsoft/fortune-ox-logo.webp" alt="Imagem" style="width: 90px; height: 90px; position: relative; right: -70px; top: 30px;"></span>
+
+
+        </div>
+      </div>
+      <button class="spin" onclick="myfunction()">Girar</button>
+    </div>
+
+    <div id="result-screen">
+      <a href="https://estrelabet.com/">
+        <img src="https://i.ibb.co/6B8dRRx/00114banner.png" alt="Imagem Clicável">
+      </a>
+    </div>
+    <div id="message-container"></div>
+    <script>
+        var messages = [
+      "Rafaela ganhou 600 reais",
+      "José resgatou 50 reais",
+      "pedro ganhou",
+      "joao ganhou",
+      "joaquim ganhou",
+      // Adicione mais mensagens aqui
+    ];
+
+    function showRandomMessage() {
+      var randomIndex = Math.floor(Math.random() * messages.length);
+      var messageElement = document.getElementById("message-container");
+      messageElement.textContent = messages[randomIndex];
+    }
+
+    showRandomMessage(); // Exibir mensagem aleatória ao carregar a página
+
+    setInterval(showRandomMessage, 3000);
+    function myfunction() {
+    var deg = 5050; // Defina o valor desejado para a rotação em graus
+    document.getElementById('box').style.transform = "rotate(" + deg + "deg)";
+    var element = document.getElementById("mainbox");
+    element.classList.remove('animate');
+    setTimeout(function() {
+        element.classList.add('animate');
+        showResultScreen();
+    }, 6000);
+}
+
+      function showResultScreen() {
+        var resultScreen = document.getElementById("result-screen");
+        resultScreen.style.display = "flex";
+      }
+      
+    </script>
+  </body>
+</html>
